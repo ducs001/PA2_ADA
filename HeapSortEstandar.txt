@@ -1,0 +1,37 @@
+// ===================================================================
+// OPERACIÓN PRIMITIVA: Restaurar propiedad de Max-Heap
+// Complejidad: Θ(log n) por llamada
+
+Procedimiento MaxHeapify(A, i, tamaño):
+    mayor ← i
+    izq   ← 2 * i + 1
+    der   ← 2 * i + 2
+
+    Si izq < tamaño y A[izq] > A[mayor]:
+        mayor ← izq
+    Si der < tamaño y A[der] > A[mayor]:
+        mayor ← der
+    Si mayor ≠ i:
+        Intercambiar(A[i], A[mayor])
+        MaxHeapify(A, mayor, tamaño)
+
+// ===================================================================
+// FASE 1: Construcción del Montículo
+// Complejidad: Θ(n)
+// ===================================================================
+Procedimiento ConstruirMaxHeap(A, n):
+    Para i ← ⌊n / 2⌋ - 1 hasta 0 hacer:
+        MaxHeapify(A, i, n)
+
+// ===================================================================
+// FASE 2: Ordenamiento por Extracción Sucesiva
+// Complejidad: Θ(n log n)
+// ===================================================================
+Procedimiento HeapSort(A, n):
+    // 1. Convertir arreglo en Max-Heap
+    ConstruirMaxHeap(A, n)
+
+    // 2. Extraer máximo repetidamente y reducir heap
+    Para i ← n - 1 hasta 1 hacer:
+        Intercambiar(A[0], A[i])      // Máximo va a su posición final
+        MaxHeapify(A, 0, i)           // Restaura propiedad en el heap restante

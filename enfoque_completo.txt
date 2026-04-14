@@ -1,0 +1,10 @@
+Procedimiento HeapSort(A, n):
+    ConstruirMaxHeap(A, n)
+    Para i ← n-1 hasta 1:
+        Intercambiar(A[0], A[i])
+        MaxHeapify(A, 0, i)  // El heap efectivo se reduce en 1
+
+// ENFOQUE 2: Ordenamiento completo + acceso directo
+Función KésimoMayor_Completo(A, n, k):
+    HeapSort(A, n)            // Ordena ascendentemente
+    Retornar A[n - k]         // k-ésimo mayor

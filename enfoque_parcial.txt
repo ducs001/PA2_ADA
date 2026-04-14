@@ -1,0 +1,27 @@
+// Funciones auxiliares (índices base 0)
+Procedimiento MaxHeapify(A, i, tamaño):
+    mayor ← i
+    izq   ← 2*i + 1
+    der   ← 2*i + 2
+
+    Si izq < tamaño y A[izq] > A[mayor]:
+        mayor ← izq
+    Si der < tamaño y A[der] > A[mayor]:
+        mayor ← der
+    Si mayor ≠ i:
+        Intercambiar(A[i], A[mayor])
+        MaxHeapify(A, mayor, tamaño)
+
+Procedimiento ConstruirMaxHeap(A, n):
+    Para i ← ⌊n/2⌋ - 1 hasta 0:
+        MaxHeapify(A, i, n)
+
+// ENFOQUE 1: Extracción parcial
+Función KésimoMayor_Parcial(A, n, k):
+    ConstruirMaxHeap(A, n)
+    tamaño ← n
+    Para i ← 1 hasta k-1:
+        Intercambiar(A[0], A[tamaño-1])
+        tamaño ← tamaño - 1
+        MaxHeapify(A, 0, tamaño)
+    Retornar A[0]  // Raíz actual = k-ésimo mayor
